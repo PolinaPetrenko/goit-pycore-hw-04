@@ -1,5 +1,5 @@
 def total_salary(path):
-    total = 0
+    total = 0.0
     count = 0
     try:
         with open(path, 'r', encoding='utf-8') as file:
@@ -12,21 +12,18 @@ def total_salary(path):
                     print(f"Помилка у форматі даних рядка: {line}")
         
         if count == 0:
-            return 0, 0
+            return 0.0, 0.0
             
         average = total / count
         return total, average
 
     except FileNotFoundError:
         print("Файл не знайдено.")
-        return None
+        return 0.0, 0.0
     except Exception as e:
         print(f"Сталася помилка: {e}")
-        return None
-    
+        return 0.0, 0.0
 
-total, average = total_salary("salary_file.txt")
-
-
-if total is not None:
+if __name__ == "__main__":
+    total, average = total_salary("salary_file.txt")
     print(f"Загальна сума заробітної плати: {total}, Середня заробітна плата: {average}")

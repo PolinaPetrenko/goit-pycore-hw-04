@@ -1,7 +1,10 @@
 def parse_input(user_input):
-    cmd, *args = user_input.split()
+    parts = user_input.split()
+    if not parts:
+        return "", []
+    cmd, *args = parts
     cmd = cmd.strip().lower()
-    return cmd, *args
+    return cmd, args
 
 def add_contact(args, contacts):
     if len(args) < 2:
@@ -40,7 +43,7 @@ def main():
         if not user_input.strip():
             continue
             
-        command, *args = parse_input(user_input)
+        command, args = parse_input(user_input)
 
         if command in ["close", "exit"]:
             print("Good bye!")
